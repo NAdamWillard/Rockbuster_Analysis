@@ -7,5 +7,5 @@ This project hypothesizes a brick-and-mortar DVD rental company that has decided
 
 ## Data
 
-This database is completely fabricated.  It's been provided for tutorial purposes by PostgreSQL, and can be found [here](https://www.postgresqltutorial.com/wp-content/uploads/2019/05/dvdrental.zip)
+This database is completely fabricated.  It's been provided for tutorial purposes by PostgreSQL, and can be found [here](https://www.postgresqltutorial.com/wp-content/uploads/2019/05/dvdrental.zip).
 
