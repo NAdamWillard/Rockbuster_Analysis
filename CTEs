@@ -1,0 +1,91 @@
+### Here is a SQL query with a CTE used to find Rockbuster's top 5 customers in its top 10 cities:
+
+WITH top_10_cities (city, country, customer_count) AS
+(WITH top_10_countries (country, customer_count) AS
+(SELECT D.country,
+COUNT(customer_id) AS number_of_customers
+FROM customer A
+INNER JOIN address B ON A.address_id = B.address_id
+INNER JOIN city C ON B.city_ID = C.city_id
+INNER JOIN country D on C.country_ID = D.country_ID
+GROUP BY country
+ORDER BY COUNT(customer_id) DESC
+LIMIT 10)
+
+SELECT C.city,
+D.country,
+COUNT(customer_id) AS number_of_customers
+FROM customer A
+INNER JOIN address B ON A.address_id = B.address_id
+INNER JOIN city C ON B.city_ID = C.city_id
+INNER JOIN country D on C.country_ID = D.country_ID
+WHERE D.country IN (SELECT country FROM top_10_countries)
+GROUP BY c.city, d.country
+ORDER BY COUNT(customer_id) DESC
+LIMIT 10)
+
+SELECT 
+A.customer_id,
+A.first_name,
+A.last_name,
+C.city,
+D.country,
+SUM(F.amount) AS total_paid_to_rockbuster
+FROM customer A
+INNER JOIN rental E ON A.customer_id = E.customer_id
+INNER JOIN payment F ON E.rental_id = F.rental_id
+INNER JOIN address B ON A.address_id = B.address_id
+INNER JOIN city C ON B.city_ID = C.city_id
+INNER JOIN country D on C.country_ID = D.country_ID
+WHERE city IN (SELECT city FROM top_10_cities)
+GROUP BY a.customer_id, A.first_name, A.last_name, C.city, D.country
+ORDER BY total_paid_to_rockbuster DESC
+LIMIT 5
+
+
+### Here is a SQL query with a CTE used to find how many of the top 5 Rockbuster customers are in each country represented by that group.
+
+WITH all_customers (country, all_customer_count) AS
+(SELECT DISTINCT D.country,
+	COUNT (DISTINCT A.customer_id) AS all_customer_count
+FROM customer A
+			INNER JOIN rental E ON A.customer_id = E.customer_id
+			INNER JOIN payment F ON E.rental_id = F.rental_id
+			INNER JOIN address B ON A.address_id = B.address_id
+			INNER JOIN city C ON B.city_ID = C.city_id
+			INNER JOIN country D on C.country_ID = D.country_ID
+GROUP BY country
+ORDER BY all_customer_count DESC),
+
+top_customers (country, top_customer_count) AS
+(SELECT top_5_customers.country,
+COUNT (top_5_customers.customer_id) AS top_customer_count
+FROM (SELECT 
+				A.customer_id,
+				A.first_name,
+				A.last_name,
+				C.city,
+				D.country,
+				SUM(F.amount) AS total_paid_to_rockbuster
+			FROM customer A
+			INNER JOIN rental E ON A.customer_id = E.customer_id
+			INNER JOIN payment F ON E.rental_id = F.rental_id
+			INNER JOIN address B ON A.address_id = B.address_id
+			INNER JOIN city C ON B.city_ID = C.city_id
+			INNER JOIN country D on C.country_ID = D.country_ID
+			WHERE city IN ('Aurora','Atlixco','Xintai','Adoni','Dhule (Dhulia)',
+			   'Kurashiki','Pingxiang','Sivas','Celaya','So Leopoldo')
+GROUP BY a.customer_id, A.first_name, A.last_name, C.city, D.country
+ORDER BY total_paid_to_rockbuster DESC
+LIMIT 5) AS top_5_customers
+GROUP BY top_5_customers.country)
+
+SELECT A.country,
+all_customer_count,
+	top_customer_count
+FROM
+all_customers A
+INNER JOIN
+top_customers B	ON A.country = B.country
+
+ORDER BY top_customer_count DESC
