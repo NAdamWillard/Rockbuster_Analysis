@@ -14,6 +14,12 @@ This repository contains:
 * "Queries" folder showcasing several of the more complicated queries created for this project
 * "Final_results" folder containing the final project report (a powerpoint) and an excel spreadsheet with the selected data queried from the database, as well as the specific queries used to gain it
 
+## Results
+
+This project answered all of the questions posed in the project brief. This focused on things such as general statistics, where Rockbuster's most customers and their highest-paying customers are based, how sales figures vary by geogrphaic region, and a breakdown of top performing movie genres, actors, and ratings.
+
+Additionally, a number of visualizations for this project were created in Tableau Public, which can be accessed [here](https://public.tableau.com/app/profile/adam.willard/viz/RockbusterGraphs/RockbusterCustomersSalesMap#1).
+
 ## Data
 
 This database is completely fabricated.  It's been provided for tutorial purposes by PostgreSQL, and can be found [here](https://www.postgresqltutorial.com/wp-content/uploads/2019/05/dvdrental.zip).
