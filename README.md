@@ -5,7 +5,7 @@ This is a project demonstrating the use of SQL to analyze the Rockbuster databas
 
 This project hypothesizes a brick-and-mortar DVD rental company that has decided to make the transition to offer online streaming services. To that end, this project has analyzed the existing SQL database of "Rockbuster" in order to identify which aspects of its portfolio demonstrate the best performance, in order to give direction towards their online launch.  The name "Rockbuster" is a spoof on the actual "Blockbuster" video store.
 
-## Content
+## Contents
 
 This repository contains:
 
