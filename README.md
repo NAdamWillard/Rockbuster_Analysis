@@ -12,7 +12,7 @@ This repository contains:
 * Data dictionary created for this project
 * Database relationship diagram of the Rockbuster SQL database
 * "Queries" folder showcasing several of the more complicated queries created for this project
-* "
+* "Final_results" folder containing the final project report (a powerpoint) and an excel spreadsheet with the selected data queried from the database, as well as the specific queries used to gain it
 
 ## Data
 
