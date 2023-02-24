@@ -1,5 +1,5 @@
 # Rockbuster_analysis
-This is a collection of SQL queries used to analyze the Rockbuster database as part of the CareerFoundry Data Analytics bootcamp.
+This is a project demonstrating the use of SQL to analyze the Rockbuster database as part of the CareerFoundry Data Analytics bootcamp.
 
 ## Objective
 
